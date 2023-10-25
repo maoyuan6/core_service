@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33712.159
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webapi", "webapi\Webapi.csproj", "{5AEB4E29-BAA4-41E1-81A5-807F0995FB4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Respository", "Respository\Respository.csproj", "{5A95FE18-1E5C-4594-853C-6604403A4DAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{C1EB0CB8-1A63-46F8-9327-C150EEB858D1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5AEB4E29-BAA4-41E1-81A5-807F0995FB4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AEB4E29-BAA4-41E1-81A5-807F0995FB4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AEB4E29-BAA4-41E1-81A5-807F0995FB4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AEB4E29-BAA4-41E1-81A5-807F0995FB4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A95FE18-1E5C-4594-853C-6604403A4DAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A95FE18-1E5C-4594-853C-6604403A4DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A95FE18-1E5C-4594-853C-6604403A4DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A95FE18-1E5C-4594-853C-6604403A4DAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1EB0CB8-1A63-46F8-9327-C150EEB858D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1EB0CB8-1A63-46F8-9327-C150EEB858D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1EB0CB8-1A63-46F8-9327-C150EEB858D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1EB0CB8-1A63-46F8-9327-C150EEB858D1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F1B9B289-E082-4971-954F-DCB91CD3FF06}
+	EndGlobalSection
+EndGlobal
