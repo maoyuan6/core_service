@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Webapi</name>
+    </assembly>
+    <members>
+        <member name="P:Webapi.Controllers.Base.ResponseResult`1.Success">
+            <summary>
+            请求是否成功
+            </summary>
+        </member>
+        <member name="P:Webapi.Controllers.Base.ResponseResult`1.Code">
+            <summary>
+            响应代码 200 为成功， 非200为失败，Message为失败原因
+            </summary>
+        </member>
+        <member name="P:Webapi.Controllers.Base.ResponseResult`1.Message">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="P:Webapi.Controllers.Base.ResponseResult`1.Data">
+            <summary>
+            返回实体
+            </summary>
+        </member>
+        <member name="T:Webapi.Controllers.Home.HomeController">
+            <summary>
+            首页
+            </summary>
+        </member>
+        <member name="M:Webapi.Controllers.Home.HomeController.LoginAsync(System.String,System.String)">
+            <summary>
+            登录接口
+            </summary>
+            <param name="name"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Webapi.Controllers.Home.HomeController.Index">
+            <summary>
+            首页
+            </summary> 
+            <returns></returns>
+        </member>
+        <member name="M:Webapi.Controllers.Home.HomeController.SynchronizeEntitiesAsync(IFreeSql)">
+            <summary>
+            实体同步到数据库
+            </summary>
+            <param name="fsql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Webapi.Controllers.Home.HomeController.SendEmailAsync(Infrastructure.Helpers.SmsModel)">
+            <summary>
+            发送短信
+            </summary>
+            <param name="arg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Webapi.Controllers.Home.OrdersController">
+            <summary>
+            商品订单管理
+            </summary>
+        </member>
+        <member name="M:Webapi.Controllers.Home.OrdersController.OrderJoinMQAsync(Service.Model.Order.CreateOrderModel)">
+            <summary>
+            下单,将订单添加进队列
+            </summary>
+            <param name="arg"></param> 
+            <returns></returns> 
+        </member>
+        <member name="M:Webapi.Controllers.Home.OrdersController.OrderSubmitAsync(Service.Model.Order.CreateOrderModel)">
+            <summary>
+            直接消费
+            </summary>
+            <param name="arg"></param> 
+            <returns></returns> 
+        </member>
+        <member name="T:Webapi.Controllers.Home.UserController">
+            <summary>
+            用户管理
+            </summary>
+        </member>
+        <member name="M:Webapi.Controllers.Home.UserController.GetUserListAsync(Infrastructure.Model.RequestModel.QueryPageListModel)">
+            <summary>
+            获取用户列表
+            </summary>
+            <param name="arg"></param> 
+            <returns></returns> 
+        </member>
+        <member name="M:Webapi.Controllers.Home.UserController.AddUserAsync(Service.Model.User.UserModel)">
+            <summary>
+            添加用户
+            </summary>
+            <param name="arg"></param> 
+            <returns></returns> 
+        </member>
+        <member name="M:Webapi.Controllers.Home.UserController.GetUserInfoAsync(System.String)">
+            <summary>
+            获取用户信息
+            </summary>
+            <param name="id"></param> 
+            <returns></returns> 
+        </member>
+    </members>
+</doc>
