@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Extensions
 {
@@ -21,6 +16,10 @@ namespace Infrastructure.Extensions
         public static T ToObject<T>(this string str)
         {
             return JsonConvert.DeserializeObject<T>(str);
+        }
+        public static List<T> ToList<T>(this string str)
+        {
+            return JsonConvert.DeserializeObject<List<T>>(str); 
         }
     }
 }

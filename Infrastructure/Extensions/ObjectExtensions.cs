@@ -41,7 +41,7 @@ namespace Infrastructure.Extensions
             {
                 return string.Empty;
             }
-            return JsonConvert.SerializeObject(obj, Formatting.Indented);
+            return JsonConvert.SerializeObject(obj);
         }
     }
 }

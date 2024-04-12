@@ -76,6 +76,18 @@
             <param name="arg"></param> 
             <returns></returns> 
         </member>
+        <member name="M:Webapi.Controllers.Home.ProbabilityController.GetTurntableLotteryByProbability">
+            <summary>
+            抽奖根据概率获取奖品
+            </summary> 
+            <returns></returns> 
+        </member>
+        <member name="M:Webapi.Controllers.Home.ProbabilityController.GetTurntableLotteryListByProbability">
+            <summary>
+            抽奖根据概率获取奖品，十连抽
+            </summary> 
+            <returns></returns> 
+        </member>
         <member name="T:Webapi.Controllers.Home.UserController">
             <summary>
             用户管理

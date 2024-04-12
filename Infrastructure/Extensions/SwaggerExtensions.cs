@@ -66,6 +66,12 @@ namespace Infrastructure.Extensions
                     Title = "网关接口",
                     Description = "ASP.NET Core Web API Gateway",
                 });
+                options.SwaggerDoc("Probability", new OpenApiInfo
+                {
+                    Version = "Probability",
+                    Title = "概率接口",
+                    Description = "ASP.NET Core Web API Probability",
+                });
 
                 options.IncludeAllXmlComments();
 
@@ -167,6 +173,7 @@ namespace Infrastructure.Extensions
                 options.SwaggerEndpoint("/swagger/Auth/swagger.json", "Auth Docs");
                 options.SwaggerEndpoint("/swagger/Commodity/swagger.json", "Commodity Docs");
                 options.SwaggerEndpoint("/swagger/Gateway/swagger.json", "Gateway Docs");
+                options.SwaggerEndpoint("/swagger/Probability/swagger.json", "Probability Docs");
             });
 
             return app;

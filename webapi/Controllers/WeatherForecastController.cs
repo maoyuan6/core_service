@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Service.Model;
 
 namespace webapi.Controllers
 {
@@ -28,6 +29,12 @@ namespace webapi.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpPost]        
+        public JsonResult test(TestModel arg)
+        {
+            return new JsonResult("1");
         }
     }
 }
