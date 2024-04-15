@@ -40,25 +40,6 @@ namespace Repository.Entities.Product.Commodity
         /// 库存
         /// </summary>
         [Column(IsNullable = false, Name = "inventory")]
-        public int Inventory { get; set; }
-
-        /// <summary>
-        /// 商品详情
-        /// </summary>
-        [Navigate(nameof(Repository.Entities.Product.Commodity.Commodity.Code))]
-        public virtual CommodityInfo CommodityInfo { get; set; }
-
-        /// <summary>
-        /// 标准产品点位集合
-        /// </summary>
-        [Navigate(nameof(Repository.Entities.Product.Commodity.Commodity.Code))]
-        public virtual ICollection<CommodityImage> CommodityImageList { get; set; }
-
-
-        /// <summary>
-        /// 订单列表
-        /// </summary>
-        [Navigate(nameof(Code))]
-        public virtual ICollection<Orders> OrdersList { get; set; }
+        public int Inventory { get; set; } 
     }
 }

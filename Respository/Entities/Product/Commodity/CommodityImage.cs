@@ -30,12 +30,6 @@ namespace Repository.Entities.Product.Commodity
         /// 商品图片
         /// </summary> 
         [Column(IsNullable = false, Name = "image")]
-        public string Image { get; set; }
-
-        /// <summary>
-        /// 商品
-        /// </summary>
-        [Navigate(nameof(Code))]
-        public virtual Commodity Commodity { get; set; }
+        public string Image { get; set; } 
     }
 }

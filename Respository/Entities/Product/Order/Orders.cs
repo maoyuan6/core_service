@@ -51,20 +51,7 @@ namespace Repository.Entities.Product.Order
         /// 下单状态
         /// </summary>
         [Column(IsNullable = false, Name = "order_status")]
-        public OrderStatus OrderStatus { get; set; }
-
-        /// <summary>
-        /// 商品
-        /// </summary>
-        [Navigate(nameof(CommodityCode))]
-        public virtual ICollection<Commodity.Commodity> CommodityList { get; set; }
-
-        /// <summary>
-        /// 用户
-        /// </summary>
-        [Navigate(nameof(UserCode))]
-        public virtual ICollection<User> User { get; set; }
-
+        public OrderStatus OrderStatus { get; set; } 
     }
     /// <summary>
     /// 订单下单状态

@@ -17,9 +17,18 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Configuration.AddJsonFile(builder.Environment.IsDevelopment()
     ? $"appsettings.{builder.Environment.EnvironmentName}.json"
     : "appsettings.json", optional: true, reloadOnChange: true);
+//builder.Configuration.AddJsonFile($"nacosconfig.json");
+try
+{
+    // 注册 Nacos 配置源.暂时不处理nacos 的日志
+    builder.Configuration.AddNacosV2Configuration(builder.Configuration.GetSection("Nacos"), logAction: x => { });
+}
+catch (Exception e)
+{
+    // 兜底 nacos 的配置
+    builder.Configuration.AddJsonFile($"nacosconfig.json");
+}
 
-// 注册 Nacos 配置源.暂时不处理nacos 的日志
-builder.Configuration.AddNacosV2Configuration(builder.Configuration.GetSection("Nacos"), logAction: x => { });
 GlobalContext.Configuration = builder.Configuration;
 await builder.Services.AddCoreService(builder);
 var app = builder.Build();

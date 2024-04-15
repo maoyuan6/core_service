@@ -43,17 +43,6 @@ namespace Repository.Entities
         /// 手机号
         /// </summary>
         [Column(Name = "phone_number", StringLength = 64)]
-        public string PhoneNumber { get; set; }
-
-        /// <summary>
-        /// 角色列表
-        /// </summary>
-        public virtual ICollection<Role> RoleList { get; set; }
-
-        /// <summary>
-        /// 订单列表
-        /// </summary>
-        public virtual ICollection<Orders> Orders { get; set; }
- 
+        public string PhoneNumber { get; set; } 
     }
 }
