@@ -156,13 +156,7 @@ namespace Webapi
             services.AddCustomSwagger();
 
             services.AddSingleton<ITokenHelper, TokenHelper>();
-            services.AddSingleton<IFreeSql>(Fsql);
-
-            #region Nacos
-
-
-
-            #endregion
+            services.AddSingleton<IFreeSql>(Fsql); 
         }
     }
 }

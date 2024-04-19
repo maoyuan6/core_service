@@ -40,6 +40,23 @@ namespace Repository.Entities.Product.Commodity
         /// 库存
         /// </summary>
         [Column(IsNullable = false, Name = "inventory")]
-        public int Inventory { get; set; } 
+        public int Inventory { get; set; }
+
+        /// <summary>
+        /// 商品图片
+        /// </summary> 
+        [Column(IsNullable = false, Name = "image")]
+        public string Image { get; set; }
+
+        /// <summary>
+        /// 商品标题
+        /// </summary>
+        [Column(IsNullable = false, Name = "title", StringLength = 128)]
+        public string Title { get; set; }
+        /// <summary>
+        /// 商品简介
+        /// </summary>
+        [Column(IsNullable = false, Name = "introduction")]
+        public string Introduction { get; set; }
     }
 }

@@ -7,25 +7,19 @@ using System.Threading.Tasks;
 
 namespace Repository.Entities.Product.Order
 {
-    [Index("uk_id", "id", true)]
+    [Index("uk_code", "code", true)]
     [Table(Name = "orders")]
     public class Orders : IEntityBase
     {
-
-        /// <summary>
-        /// ID
-        /// </summary>
-        [Column(IsIdentity = true, Name = "id")]
-        public int Id { get; set; }
         /// <summary>
         /// 编号
         /// </summary>
-        [Column(IsNullable = false, Name = "code", StringLength = 128)]
+        [Column(IsPrimary = true, IsNullable = false, Name = "code", StringLength = 128)]
         public string Code { get; set; }
         /// <summary>
         /// 用户编号
         /// </summary>
-        [Column(IsNullable = false, Name = "user_id", StringLength = 128)]
+        [Column(IsNullable = false, Name = "user_code", StringLength = 128)]
         public string UserCode { get; set; }
         /// <summary>
         /// 商品编号
@@ -51,7 +45,7 @@ namespace Repository.Entities.Product.Order
         /// 下单状态
         /// </summary>
         [Column(IsNullable = false, Name = "order_status")]
-        public OrderStatus OrderStatus { get; set; } 
+        public OrderStatus OrderStatus { get; set; }
     }
     /// <summary>
     /// 订单下单状态

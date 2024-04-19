@@ -5,19 +5,14 @@ using Repository.Entities.Product.Order;
 
 namespace Repository.Entities
 {
-    [Index("uk_id", "user_id", true)]
+    [Index("uk_code", "code", true)]
     [Table(Name = "user")]
     public class User : IEntityBase
     {
         /// <summary>
-        /// 用户id
-        /// </summary>
-        [Column(IsIdentity = true, Name = "user_id")]
-        public int UserId { get; set; }
-        /// <summary>
         /// 用户编号
         /// </summary>
-        [Column(IsNullable = false, Name = "code", StringLength = 128)]
+        [Column(IsPrimary = true, IsNullable = false, Name = "code", StringLength = 128)]
         public string Code { get; set; }
         /// <summary>
         /// 用户名
@@ -43,6 +38,6 @@ namespace Repository.Entities
         /// 手机号
         /// </summary>
         [Column(Name = "phone_number", StringLength = 64)]
-        public string PhoneNumber { get; set; } 
+        public string PhoneNumber { get; set; }
     }
 }
