@@ -6,7 +6,7 @@
 
         private void test()
         {
-            sql = " insert Enterprise_BlackList values('@vip.163.com',GETDATE()) "; 
+            sql = " insert Enterprise_BlackList values('@vip.163.com',GETDATE())   "; 
         }
 
     }
