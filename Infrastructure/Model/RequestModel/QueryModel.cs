@@ -28,7 +28,7 @@ namespace Infrastructure.Model.RequestModel
         /// <summary>
         /// 值（如果是对象，请转换成json字符串）
         /// </summary>
-        public string Price { get; set; }
+        public string Value { get; set; }
     }
 
     /// <summary>
@@ -69,12 +69,12 @@ namespace Infrastructure.Model.RequestModel
         /// <summary>
         /// 包含
         /// </summary>
-        Contain,
+        Contains,
 
         /// <summary>
         /// 不包含
         /// </summary>
-        NotContain,
+        NotContains,
 
         /// <summary>
         /// 全模糊(%arg%)
@@ -84,12 +84,12 @@ namespace Infrastructure.Model.RequestModel
         /// <summary>
         /// 左边匹配(arg%)
         /// </summary>
-        LeftLike,
+        StartsWith,
 
         /// <summary>
         /// 右边匹配(%arg)
         /// </summary>
-        RightLike,
+        EndsWith,
         /// <summary>
         /// 多条件模糊(%arg%)
         /// </summary>

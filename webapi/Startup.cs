@@ -37,6 +37,11 @@ namespace Webapi
             {
                 app.UseCustomSwagger();
             }
+            else
+            {
+                //没页面，暂时拿swagger 当作主页
+                app.UseCustomSwagger();   
+            }
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
@@ -53,7 +58,7 @@ namespace Webapi
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             Console.WriteLine($"Program环境变量-------{environment}");
-            AppSettingHelper.ConfigInitialization(); 
+            AppSettingHelper.ConfigInitialization();
 
             #region Redis 
             ConfigurationOptions redisConfigOption = new ConfigurationOptions();
@@ -156,7 +161,7 @@ namespace Webapi
             services.AddCustomSwagger();
 
             services.AddSingleton<ITokenHelper, TokenHelper>();
-            services.AddSingleton<IFreeSql>(Fsql); 
+            services.AddSingleton<IFreeSql>(Fsql);
         }
     }
 }

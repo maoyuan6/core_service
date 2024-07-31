@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Infrastructure.Extensions;
+using Infrastructure.Helpers;
 using Infrastructure.Model.RequestModel;
 using Mapster;
 using Repository.Entities.Log;
@@ -30,22 +33,8 @@ namespace Service.Service
 
         public async Task<PageListModel<SystemLogModel>> GetLogList(QueryPageListModel arg)
         {
-            arg.QueryModel ??= new QueryModel();
-            var result = new PageListModel<SystemLogModel>();
-            var select = _freeSql.Select<SystemLog>();
-            if (arg.QueryModel.QueryItemList.Count > 0)
-            {
-
-            }
-
-            //select = select.OrderByDescending(e => e.LogTime).to;
-            //var (pagedData, totalCount) = await _freeSql.Select<SystemLog>()
-            //    .WhereIf(!string.IsNullOrEmpty(arg.), e => e.Message.Contains(arg.Filter)) // 假设添加过滤条件，根据实际需求调整
-            //    .OrderByDescending(e => e.Id) // 假设按Id降序排列，根据实际需求调整排序条件
-            //    .ToPageAsync(arg.Index, arg.Size, true);
-            //result.Count = totalCount;
-            //result.Data = pagedData;
-            return result;
+            var result = await _freeSql.GetPagedResultAsync<SystemLog>(arg); 
+            return result.Adapt<PageListModel<SystemLogModel>>(); ;
         }
     }
 }

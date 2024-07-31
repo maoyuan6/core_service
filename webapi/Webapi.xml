@@ -57,6 +57,12 @@
             <param name="arg"></param>
             <returns></returns>
         </member>
+        <member name="M:Webapi.Controllers.Home.LogController.GetLogList(Infrastructure.Model.RequestModel.QueryPageListModel)">
+            <summary>
+            新增一个查看日志的接口
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Webapi.Controllers.Home.OrdersController">
             <summary>
             商品订单管理
