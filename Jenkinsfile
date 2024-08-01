@@ -9,15 +9,13 @@ pipeline {
         stage('build project') {
             steps {
                echo 'build project'
-               sh 'docker build -f ./Dockerfile -t webapi:core_service .' 
-               sh 'docker stop webapi || true' 
-               sh 'docker rm -f webapi || true' 
+               sh 'docker compose -f docker_compose.yml up --build -d' 
             }
         }
         stage('publish') {
             steps {
                 echo 'publish'
-                sh 'docker run -d -p 8500:80  --name webapi webapi:core_service'
+                sh 'success'
             }
         }
     }
