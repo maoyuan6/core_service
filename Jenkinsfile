@@ -9,13 +9,12 @@ pipeline {
         stage('build project') {
             steps {
                echo 'build project'
-               sh 'docker compose -f docker_compose.yml up --build -d' 
+               sh 'docker-compose -f docker_compose.yml up --build -d' 
             }
         }
         stage('publish') {
-            steps {
-                echo 'publish'
-                sh 'success'
+            steps { 
+				echo 'success' 
             }
         }
     }
