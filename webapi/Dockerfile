@@ -9,6 +9,9 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["webapi/Webapi.csproj", "webapi/"]
+COPY ["Infrastructure/Infrastructure.csproj", "Infrastructure/"]
+COPY ["Respository/Repository.csproj", "Respository/"]
+COPY ["Service/Service.csproj", "Service/"]
 RUN dotnet restore "./webapi/./Webapi.csproj"
 COPY . .
 WORKDIR "/src/webapi"
