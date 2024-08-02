@@ -16,4 +16,16 @@
     <ProjectReference Include="..\Respository\Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Aspose.Cells">
+      <HintPath>..\lib\aspose\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Pdf">
+      <HintPath>..\lib\aspose\Aspose.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Words">
+      <HintPath>..\lib\aspose\Aspose.Words.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

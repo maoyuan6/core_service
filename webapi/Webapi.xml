@@ -24,6 +24,13 @@
             返回实体
             </summary>
         </member>
+        <member name="M:Webapi.Controllers.Home.FileConversionController.ConvertToPdf(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            文件转化成PDF
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
         <member name="T:Webapi.Controllers.Home.HomeController">
             <summary>
             首页
