@@ -1,7 +1,9 @@
 ﻿using Infrastructure.Model.RequestModel;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,46 +26,37 @@ namespace Infrastructure.Extensions
             // 处理查询条件
             foreach (var item in queryPageListModel.QueryModel.QueryItemList)
             {
-                switch (item.Operator)
+                var parameter = Expression.Parameter(typeof(T), "x");
+                var member = Expression.PropertyOrField(parameter, item.Field);
+                var memberType = member.Type;
+
+                // Convert item.Value to the member's type
+                var convertedValue = Convert.ChangeType(item.Value, memberType);
+
+                // Create a constant expression for the converted value
+                var constant = Expression.Constant(convertedValue, memberType);
+
+                Expression? body = item.Operator switch
                 {
-                    case EQueryModel.Equal:
-                        selectQuery = selectQuery.Where($"{item.Field} = @0", item.Value);
-                        break;
-                    case EQueryModel.NotEqual:
-                        selectQuery = selectQuery.Where($"{item.Field} != @0", item.Value);
-                        break;
-                    case EQueryModel.LessThan:
-                        selectQuery = selectQuery.Where($"{item.Field} < @0", item.Value);
-                        break;
-                    case EQueryModel.LessThanOrEqual:
-                        selectQuery = selectQuery.Where($"{item.Field} <= @0", item.Value);
-                        break;
-                    case EQueryModel.GreaterThan:
-                        selectQuery = selectQuery.Where($"{item.Field} > @0", item.Value);
-                        break;
-                    case EQueryModel.GreaterThanOrEqual:
-                        selectQuery = selectQuery.Where($"{item.Field} >= @0", item.Value);
-                        break;
-                    case EQueryModel.Contains:
-                        selectQuery = selectQuery.Where($"{item.Field} LIKE @0", $"%{item.Value}%");
-                        break;
-                    case EQueryModel.NotContains:
-                        selectQuery = selectQuery.Where($"{item.Field} NOT LIKE @0", $"%{item.Value}%");
-                        break;
-                    case EQueryModel.Like:
-                        selectQuery = selectQuery.Where($"{item.Field} LIKE @0", $"%{item.Value}%");
-                        break;
-                    case EQueryModel.StartsWith:
-                        selectQuery = selectQuery.Where($"{item.Field} LIKE @0", $"{item.Value}%");
-                        break;
-                    case EQueryModel.EndsWith:
-                        selectQuery = selectQuery.Where($"{item.Field} LIKE @0", $"%{item.Value}");
-                        break;
-                    case EQueryModel.LikeIn:
-                        var values = item.Value.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                        var likeInConditions = string.Join(" OR ", values.Select(v => $"{item.Field} LIKE @0"));
-                        selectQuery = selectQuery.Where($"({likeInConditions})", values.Select(v => $"%{v.Trim()}%").ToArray());
-                        break;
+                    EQueryModel.Equal => Expression.Equal(member, constant),
+                    EQueryModel.NotEqual => Expression.NotEqual(member, constant),
+                    EQueryModel.LessThan => Expression.LessThan(member, constant),
+                    EQueryModel.LessThanOrEqual => Expression.LessThanOrEqual(member, constant),
+                    EQueryModel.GreaterThan => Expression.GreaterThan(member, constant),
+                    EQueryModel.GreaterThanOrEqual => Expression.GreaterThanOrEqual(member, constant),
+                    EQueryModel.Contains => Expression.Call(member, typeof(string).GetMethod("Contains", new[] { typeof(string) }), constant),
+                    EQueryModel.NotContains => Expression.Not(Expression.Call(member, typeof(string).GetMethod("Contains", new[] { typeof(string) }), constant)),
+                    EQueryModel.Like => Expression.Call(member, typeof(string).GetMethod("Contains", new[] { typeof(string) }), constant),
+                    EQueryModel.StartsWith => Expression.Call(member, typeof(string).GetMethod("StartsWith", new[] { typeof(string) }), constant),
+                    EQueryModel.EndsWith => Expression.Call(member, typeof(string).GetMethod("EndsWith", new[] { typeof(string) }), constant),
+                    EQueryModel.LikeIn => BuildLikeInExpression(member, item.Value),
+                    _ => null
+                };
+
+                if (body != null)
+                {
+                    var lambda = Expression.Lambda<Func<T, bool>>(body, parameter);
+                    selectQuery = selectQuery.Where(lambda);
                 }
             }
 
@@ -83,5 +76,34 @@ namespace Infrastructure.Extensions
                 PageSize = queryPageListModel.Size
             };
         }
+
+        //处理likein
+        private static Expression BuildLikeInExpression(MemberExpression member, object itemValue)
+        {
+            var conditions = itemValue.ToString().Split(',')
+                .Select(condition => condition.Trim())
+                .Where(condition => !string.IsNullOrWhiteSpace(condition))
+                .ToList();
+
+            if (!conditions.Any())
+                return Expression.Constant(false); // Return false if no conditions
+
+            var likeMethod = typeof(string).GetMethod("Contains", new[] { typeof(string) });
+            Expression combinedBody = null;
+
+            foreach (var condition in conditions)
+            {
+                var likePattern = $"%{condition}%";
+                var likeConstant = Expression.Constant(likePattern);
+                var likeExpression = Expression.Call(member, likeMethod, likeConstant);
+
+                combinedBody = combinedBody == null
+                    ? likeExpression
+                    : Expression.OrElse(combinedBody, likeExpression);
+            }
+
+            return combinedBody;
+        }
     }
 }
+
