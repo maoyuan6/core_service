@@ -5,6 +5,17 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
+# Install necessary packages
+RUN apt-get update && apt-get install -y \
+    libgdiplus \
+    libc6-dev \
+    ttf-mscorefonts-installer \
+    fonts-liberation \
+    fontconfig \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
