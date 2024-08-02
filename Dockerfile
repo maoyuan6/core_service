@@ -5,8 +5,10 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-# 在 Dockerfile 中添加以下行，安装字体
-RUN apt-get update && apt-get install -y \
+# 使用阿里云镜像源
+RUN sed -i 's|http://archive.ubuntu.com/ubuntu/|http://mirrors.aliyun.com/ubuntu/|g' /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install -y \
     libgdiplus \
     libc6-dev \
     libx11-dev \
@@ -19,7 +21,6 @@ RUN apt-get update && apt-get install -y \
     libxau6 \
     libxdmcp6 \
     xfonts-scalable \
-    msttcorefonts \
     fontconfig-config \
     && rm -rf /var/lib/apt/lists/*
 
