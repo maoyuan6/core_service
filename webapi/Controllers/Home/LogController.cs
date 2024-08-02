@@ -18,15 +18,15 @@ namespace Webapi.Controllers.Home
         {
             _logService = logService;
         }
-         
+
         /// <summary>
         /// 新增一个查看日志的接口
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> GetLogList(QueryPageListModel arg)
         {
-            return await PackageResultAsync(_logService.GetLogList(arg)); 
+            return await PackageResultAsync(_logService.GetLogList(arg));
         }
     }
 }
