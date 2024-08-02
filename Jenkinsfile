@@ -8,8 +8,13 @@ pipeline {
         }
         stage('build project') {
             steps {
-               echo 'build project'
-               sh 'docker compose -f docker_compose.yml up --build -d' 
+               echo 'Docker and Docker Compose version:'
+                // 输出 Docker 版本
+                sh 'docker --version'
+                // 输出 Docker Compose 版本
+                sh 'docker compose version'
+                echo 'Building and starting Docker containers...'
+                sh 'docker compose -f docker_compose.yml up --build -d'
             }
         }
         stage('publish') {
