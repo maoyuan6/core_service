@@ -5,14 +5,10 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-# Install necessary packages
-RUN apt-get update && apt-get install -y \
-    libgdiplus \
-    libc6-dev \
-    fonts-liberation \
-    fontconfig \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN sed -i 's/TLSv1.2/TLSv1/g' /etc/ssl/openssl.cnf
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 ARG BUILD_CONFIGURATION=Release
