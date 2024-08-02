@@ -22,25 +22,17 @@ namespace Service.Service
             var fileExtension = Path.GetExtension(file.FileName).ToLower();
             (fileExtension != ".doc" && fileExtension != ".docx" &&
                  fileExtension != ".xls" && fileExtension != ".xlsx").TrueThrowException("请上传word或者excel文件");
-            try
-            {
-                using var memoryStream = new MemoryStream();
-                await file.CopyToAsync(memoryStream);
-                memoryStream.Position = 0;
+            using var memoryStream = new MemoryStream();
+            await file.CopyToAsync(memoryStream);
+            memoryStream.Position = 0;
 
-                byte[] pdfBytes = fileExtension switch
-                {
-                    ".doc" or ".docx" => ConvertWordToPdf(memoryStream),
-                    ".xls" or ".xlsx" => ConvertExcelToPdf(memoryStream),
-                    _ => throw new NotSupportedException("File format is not supported.")
-                };
-                return pdfBytes; 
-
-            }
-            catch (Exception ex)
+            byte[] pdfBytes = fileExtension switch
             {
-                throw ex;
-            } 
+                ".doc" or ".docx" => ConvertWordToPdf(memoryStream),
+                ".xls" or ".xlsx" => ConvertExcelToPdf(memoryStream),
+                _ => throw new NotSupportedException("File format is not supported.")
+            };
+            return pdfBytes;
         }
         private byte[] ConvertWordToPdf(Stream wordStream)
         {
