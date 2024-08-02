@@ -8,6 +8,7 @@ namespace Webapi.Controllers.Home
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "Basic")]
     public class LogController : BaseApiController
     {
         //定义日志服务
