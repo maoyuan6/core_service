@@ -44,6 +44,8 @@ namespace Webapi
             }
             app.UseHttpsRedirection();
             app.UseRouting();
+            // 启用 CORS
+            app.UseCors("AllowAll"); 
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
@@ -59,6 +61,18 @@ namespace Webapi
             services.AddSwaggerGen();
             Console.WriteLine($"Program环境变量-------{environment}");
             AppSettingHelper.ConfigInitialization();
+            #region CORS
+            //允许跨域
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+
+            #endregion
+
 
             #region Redis 
             ConfigurationOptions redisConfigOption = new ConfigurationOptions();
