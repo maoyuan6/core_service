@@ -5,26 +5,6 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-# 使用阿里云镜像源
-RUN sed -i 's|http://archive.ubuntu.com/ubuntu/|http://mirrors.aliyun.com/ubuntu/|g' /etc/apt/sources.list && \
-    apt-get update && \
-    apt-get install -y \
-    libgdiplus \
-    libc6-dev \
-    libx11-dev \
-    libfontconfig1 \
-    libfreetype6 \
-    libxrender1 \
-    libxcb1 \
-    libx11-6 \
-    libx11-data \
-    libxau6 \
-    libxdmcp6 \
-    xfonts-scalable \
-    fontconfig-config \
-    && rm -rf /var/lib/apt/lists/*
-
-
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
