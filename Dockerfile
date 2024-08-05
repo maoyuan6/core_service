@@ -5,6 +5,10 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
+RUN sed -i 's|http://archive.ubuntu.com/ubuntu|http://mirrors.aliyun.com/ubuntu|g' /etc/apt/sources.list && \
+    apt-get update && \
+    apt-cache policy gnupg curl
+
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
