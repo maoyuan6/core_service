@@ -12,4 +12,5 @@ services:
       - "8081:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-       
+    volumes:
+      - /usr/share/fonts/my_fonts:/usr/share/fonts/my_fonts
